@@ -1,0 +1,10 @@
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.csproj.AssemblyReference.cache
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.Form1.resources
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.Properties.Resources.resources
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.csproj.GenerateResource.cache
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.csproj.CoreCompileInputs.cache
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newmark_Stage_Control.exe.config
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newmark_Stage_Control.exe
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newmark_Stage_Control.pdb
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.exe
+H:\C#\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Newmark_Stage_Control.pdb
