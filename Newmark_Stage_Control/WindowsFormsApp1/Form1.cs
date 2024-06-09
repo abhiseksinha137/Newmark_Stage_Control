@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32.SafeHandles;
 using Newmark_Stage_Control;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -26,6 +29,9 @@ namespace Newmark_Stage_Control
 
         newmark nm = new newmark();
         IntPtr hUSBDevice;
+        private SerialPort serialPortArduino=new SerialPort();
+        private string arduinoTrgID="trg01";
+        private string arduinoPortName="";
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -34,6 +40,8 @@ namespace Newmark_Stage_Control
 
             label1.Text = deviceNumber.ToString();
             label2.Text = string.Join(" ", nm.GetDeviceList());
+
+            timerArduino.Start();
         }
 
         private void btnConnectStage_Click(object sender, EventArgs e)
@@ -120,5 +128,65 @@ namespace Newmark_Stage_Control
                 btnAbs.PerformClick();
             }
         }
+
+        private void timerArduino_Tick(object sender, EventArgs e)
+        {
+            SerialPort.GetPortNames();
+            SerialPort.GetPortNames();
+            listBox1.Items.Clear();
+            foreach (string dummyPort in SerialPort.GetPortNames())
+            {
+                listBox1.Items.Add(dummyPort);
+            }
+
+
+            //int dwFlagsAndAttributes = 0x40000000;
+            //SafeFileHandle hFile = CreateFile(@"\\.\" + arduinoPortName, -1073741824, 0, IntPtr.Zero, 3, dwFlagsAndAttributes, IntPtr.Zero);
+            bool isPortValid = SerialPort.GetPortNames().Any(x => string.Compare(x, arduinoPortName, true) == 0);
+            lblSerialPort.Text = isPortValid.ToString();
+            if (!isPortValid)
+            {
+                arduinoPortName = "";
+                pnlArduinoConn.BackColor = Color.DarkGray;
+
+                if (connectArduino())
+                    pnlArduinoConn.BackColor = Color.Green;
+                else
+                {
+                    pnlArduinoConn.BackColor = Color.DarkGray;
+                }
+            }
+            else
+            {
+                //pnlArduinoConn.BackColor = Color.Green;
+            }
+        }
+
+        private bool connectArduino()
+        {
+            string[] avlportNames = SerialPort.GetPortNames();
+            int baudrate = 9600;
+            foreach (string portName in avlportNames)
+            {
+                try
+                {
+                    serialPortArduino = new SerialPort(portName, baudrate);
+                    serialPortArduino.Open();
+                    serialPortArduino.WriteLine(arduinoTrgID);
+                    Thread.Sleep(100);
+                    MessageBox.Show("Connected");
+                    // Check arduino correct
+                    arduinoPortName = portName;
+                    return true;
+                }
+                catch { 
+
+                }
+
+            }
+            return false;
+        }
+
+       
     }
 }

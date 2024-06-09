@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -43,16 +44,20 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lblTrigger = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBxSpeed = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblSpeed = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnConnectStage = new System.Windows.Forms.Button();
-            this.lblSpeed = new System.Windows.Forms.Label();
-            this.lblTrigger = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.timerArduino = new System.Windows.Forms.Timer(this.components);
+            this.pnlArduinoConn = new System.Windows.Forms.Panel();
+            this.lblSerialPort = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -175,6 +180,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox2.Controls.Add(this.lblSerialPort);
+            this.groupBox2.Controls.Add(this.pnlArduinoConn);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.label3);
@@ -202,6 +209,15 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 22);
             this.textBox4.TabIndex = 1;
+            // 
+            // lblTrigger
+            // 
+            this.lblTrigger.AutoSize = true;
+            this.lblTrigger.Location = new System.Drawing.Point(168, 71);
+            this.lblTrigger.Name = "lblTrigger";
+            this.lblTrigger.Size = new System.Drawing.Size(14, 16);
+            this.lblTrigger.TabIndex = 3;
+            this.lblTrigger.Text = "0";
             // 
             // button4
             // 
@@ -251,6 +267,24 @@
             this.txtBxSpeed.Size = new System.Drawing.Size(100, 22);
             this.txtBxSpeed.TabIndex = 1;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(168, 67);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(14, 16);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "0";
+            // 
+            // lblSpeed
+            // 
+            this.lblSpeed.AutoSize = true;
+            this.lblSpeed.Location = new System.Drawing.Point(168, 24);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Size = new System.Drawing.Size(14, 16);
+            this.lblSpeed.TabIndex = 3;
+            this.lblSpeed.Text = "0";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -270,38 +304,43 @@
             this.btnConnectStage.UseVisualStyleBackColor = true;
             this.btnConnectStage.Click += new System.EventHandler(this.btnConnectStage_Click);
             // 
-            // lblSpeed
+            // timerArduino
             // 
-            this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(168, 24);
-            this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(14, 16);
-            this.lblSpeed.TabIndex = 3;
-            this.lblSpeed.Text = "0";
+            this.timerArduino.Tick += new System.EventHandler(this.timerArduino_Tick);
             // 
-            // lblTrigger
+            // pnlArduinoConn
             // 
-            this.lblTrigger.AutoSize = true;
-            this.lblTrigger.Location = new System.Drawing.Point(168, 71);
-            this.lblTrigger.Name = "lblTrigger";
-            this.lblTrigger.Size = new System.Drawing.Size(14, 16);
-            this.lblTrigger.TabIndex = 3;
-            this.lblTrigger.Text = "0";
+            this.pnlArduinoConn.BackColor = System.Drawing.Color.DarkViolet;
+            this.pnlArduinoConn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlArduinoConn.Location = new System.Drawing.Point(295, 21);
+            this.pnlArduinoConn.Name = "pnlArduinoConn";
+            this.pnlArduinoConn.Size = new System.Drawing.Size(42, 26);
+            this.pnlArduinoConn.TabIndex = 4;
             // 
-            // label9
+            // lblSerialPort
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(168, 67);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 16);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "0";
+            this.lblSerialPort.AutoSize = true;
+            this.lblSerialPort.Location = new System.Drawing.Point(292, 2);
+            this.lblSerialPort.Name = "lblSerialPort";
+            this.lblSerialPort.Size = new System.Drawing.Size(51, 16);
+            this.lblSerialPort.TabIndex = 6;
+            this.lblSerialPort.Text = "label10";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(434, 50);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 292);
+            this.listBox1.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 523);
+            this.ClientSize = new System.Drawing.Size(630, 523);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnConnectStage);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -352,6 +391,10 @@
         private System.Windows.Forms.Label lblTrigger;
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Timer timerArduino;
+        private System.Windows.Forms.Panel pnlArduinoConn;
+        private System.Windows.Forms.Label lblSerialPort;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
